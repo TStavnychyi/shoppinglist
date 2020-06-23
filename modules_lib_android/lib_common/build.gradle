@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/android_shared.gradle"
+
+dependencies {
+
+    //Kotlin
+    implementation deps.kotlin_stdlib
+
+    //AndroidX
+    api deps.androidx.app_compat
+    api deps.androidx.recyclerview
+    api deps.androidx.constraint_layout
+    api deps.androidx.core_ktx
+}

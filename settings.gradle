@@ -1,0 +1,6 @@
+rootProject.name = "ShoppingList"
+
+include ':lib_common',
+        ':app'
+
+project(':lib_common').projectDir = file('modules_lib_android/lib_common')

@@ -1,0 +1,20 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion config.compile_sdk
+
+    defaultConfig {
+        minSdkVersion config.min_sdk
+        targetSdkVersion config.target_sdk
+        versionCode config.version_code
+        versionName config.version_name
+        resConfigs "pl", "en"
+    }
+
+    buildTypes {
+        dev {
+            debuggable true
+        }
+    }
+}

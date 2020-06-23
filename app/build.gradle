@@ -1,0 +1,22 @@
+apply plugin: 'com.android.application'
+apply from: "$rootDir/android_shared.gradle"
+
+android {
+    defaultConfig {
+        applicationId "com.stavnychyy.shoppinglist"
+    }
+
+    buildTypes {
+        dev {
+            minifyEnabled false
+            shrinkResources false
+            applicationIdSuffix ".dev"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation project(':lib_common')
+}
