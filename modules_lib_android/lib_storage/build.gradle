@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/android_shared.gradle"
+
+dependencies {
+
+    implementation deps.threetenbp
+    implementation deps.androidx.room
+    implementation deps.androidx.room_rxjava
+    kapt deps.androidx.room_compiler
+
+    implementation deps.dagger2
+    implementation deps.androidx.paging
+    implementation deps.androidx.paging_rxjava
+    kapt deps.dagger2_processor
+
+    implementation project(':lib_domain')
+}

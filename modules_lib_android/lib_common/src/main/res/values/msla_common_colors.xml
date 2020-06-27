@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#00bc68</color>
+    <color name="colorPrimaryDark">#008a3c</color>
+    <color name="colorAccent">#5af097</color>
+
+    <color name="msla_common_high_priority_shopping_list">#FF0000</color>
+    <color name="msla_common_medium_priority_shopping_list">#008000</color>
+    <color name="msla_common_low_priority_shopping_list">#F7c382</color>
+
+    <color name="msla_common_button_disabled_state">#55008a3c</color>
+    <color name="msla_common_button_enabled_state">#008a3c</color>
 </resources>

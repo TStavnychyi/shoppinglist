@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/android_shared.gradle"
+
+dependencies {
+
+    implementation project(':lib_common')
+    implementation project(':lib_domain')
+    implementation project(':lib_storage')
+
+    implementation deps.androidx.paging
+    implementation deps.androidx.paging_rxjava
+
+    implementation deps.androidx.lifecycle_viewmodel
+    implementation deps.androidx.lifecycle_livedata
+
+    implementation deps.rxjava
+    implementation deps.rxkotlin
+    implementation deps.rxjava_android
+
+    kapt deps.androidx.lifecycle_compiler
+}

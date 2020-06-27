@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/shopping_list_fragment">
+
+    <fragment
+        android:id="@+id/shopping_list_fragment"
+        android:name="com.stavnychyy.shoppinglist.view.ShoppingListFragment"
+        android:label="ShoppingListFragment">
+        <action
+            android:id="@+id/open_add_shopping_list_screen"
+            app:destination="@id/add_shopping_list_fragment" />
+        <action
+            android:id="@+id/action_shopping_list_fragment_to_msla_edit_shopping_list_navigation"
+            app:destination="@id/msla_edit_shopping_list_navigation"
+            app:launchSingleTop="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/archived_shopping_list_fragment"
+        android:name="com.stavnychyy.shoppinglist.ArchivedShoppingListFragment"
+        android:label="ArchivedShoppingListFragment" />
+    <dialog
+        android:id="@+id/add_shopping_list_fragment"
+        android:name="com.stavnychyy.shoppinglist.view.AddShoppingListFragment"
+        android:label="AddShoppingListFragment" />
+    <include app:graph="@navigation/msla_edit_shopping_list_navigation" />
+</navigation>

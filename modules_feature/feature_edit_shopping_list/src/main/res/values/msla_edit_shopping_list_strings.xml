@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msla_edit_shopping_list_add_item_button_title">Add Item</string>
+    <string name="msla_edit_shopping_list_item_name_hint">Add Item</string>
+    <string name="msla_edit_shopping_list_save_item_button_title">Add</string>
+    <string name="msla_edit_shopping_list_item_additional_info_hint">Kind, Amount, Note</string>
+</resources>

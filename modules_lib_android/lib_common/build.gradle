@@ -6,9 +6,18 @@ dependencies {
     //Kotlin
     implementation deps.kotlin_stdlib
 
+    api deps.dagger2
+    api deps.dagger2_android
+    kapt deps.dagger2_processor
+    kapt deps.dagger2_android_processor
+
     //AndroidX
     api deps.androidx.app_compat
     api deps.androidx.recyclerview
     api deps.androidx.constraint_layout
     api deps.androidx.core_ktx
+    api deps.androidx.navigation_fragment
+    api deps.androidx.navigation_ui
+
+    implementation project(':lib_domain')
 }

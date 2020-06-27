@@ -1,0 +1,15 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/android_shared.gradle"
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+dependencies {
+
+    implementation deps.rxjava
+    implementation deps.rxkotlin
+    implementation deps.rxjava_android
+
+    implementation project(':lib_common')
+    implementation project(':lib_domain')
+    implementation project(':lib_parcelable_domain')
+    implementation project(':lib_storage')
+}

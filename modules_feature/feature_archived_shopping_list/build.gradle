@@ -1,0 +1,8 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/android_shared.gradle"
+
+dependencies {
+
+    implementation project(':lib_common')
+
+}
