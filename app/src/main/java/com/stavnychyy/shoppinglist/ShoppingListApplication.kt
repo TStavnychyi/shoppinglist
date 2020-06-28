@@ -5,7 +5,8 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import com.stavnychyy.shoppinglist.di.*
 
 
-class ShoppingListApplication : Application(), AddShoppingComponentProvider, EditShoppingListComponentProvider {
+class ShoppingListApplication : Application(), AddShoppingComponentProvider,
+    EditShoppingListComponentFactoryProvider {
 
     val appComponent: AppComponent by lazy { initializeComponent() }
 
@@ -13,8 +14,8 @@ class ShoppingListApplication : Application(), AddShoppingComponentProvider, Edi
         return appComponent.addShoppingComponentFactory().create()
     }
 
-    override fun provideEditShoppingListComponent(): EditShoppingListComponent {
-        return appComponent.addEditShoppingListComponentFactory().create()
+    override fun provideEditShoppingListComponentFactory(): EditShoppingListComponent.Factory {
+        return appComponent.editShoppingListComponentFactory()
     }
 
     override fun onCreate() {

@@ -14,8 +14,8 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/modules_feature/feature_add_shopping_list" />
             <option value="$PROJECT_DIR$/modules_feature/feature_archived_shopping_list" />
-            <option value="$PROJECT_DIR$/modules_feature/feature_edit_shopping_list" />
             <option value="$PROJECT_DIR$/modules_feature/feature_shopping_list" />
+            <option value="$PROJECT_DIR$/modules_feature/feature_shopping_list_details" />
             <option value="$PROJECT_DIR$/modules_lib_android/lib_common" />
             <option value="$PROJECT_DIR$/modules_lib_android/lib_parcelable_domain" />
             <option value="$PROJECT_DIR$/modules_lib_android/lib_storage" />

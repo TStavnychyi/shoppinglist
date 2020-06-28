@@ -4,5 +4,12 @@ apply from: "$rootDir/android_shared.gradle"
 dependencies {
 
     implementation project(':lib_common')
+    implementation project(':lib_domain')
+    implementation project(':lib_storage')
+
+    implementation deps.androidx.paging_java
+    implementation deps.androidx.paging_rxjava
+    implementation deps.rxjava
+    implementation deps.rxjava_android
 
 }

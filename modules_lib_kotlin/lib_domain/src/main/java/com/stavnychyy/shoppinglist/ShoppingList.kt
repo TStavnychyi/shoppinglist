@@ -9,4 +9,8 @@ data class ShoppingList(
     val items: List<ShoppingListItem> = emptyList(),
     val isArchived: Boolean = false,
     val id: ShoppingListId? = null
-)
+) {
+    fun changeArchiveStatus(isArchived: Boolean): ShoppingList {
+        return this.copy(isArchived = isArchived)
+    }
+}

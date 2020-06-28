@@ -12,7 +12,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        AppModule::class,
         AndroidInjectionModule::class,
         ViewModelBuilderModule::class,
         SubcomponentsModule::class,
@@ -28,7 +27,7 @@ interface AppComponent {
 
     fun activityComponentFactory(): ActivityComponent.Factory
     fun addShoppingComponentFactory(): AddShoppingListComponent.Factory
-    fun addEditShoppingListComponentFactory(): EditShoppingListComponent.Factory
+    fun editShoppingListComponentFactory(): EditShoppingListComponent.Factory
 }
 
 @Module(

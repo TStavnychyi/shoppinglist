@@ -19,7 +19,7 @@
 
     <include
         android:id="@+id/view_empty_list"
-        layout="@layout/msla_shopping_listy_empty"
+        layout="@layout/msla_common_empty_shopping_list"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

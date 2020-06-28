@@ -24,7 +24,3 @@ fun View.visibleOrGone(visible: Boolean) {
         gone()
     }
 }
-
-fun TextView.getString(): String {
-    return text.toString()
-}

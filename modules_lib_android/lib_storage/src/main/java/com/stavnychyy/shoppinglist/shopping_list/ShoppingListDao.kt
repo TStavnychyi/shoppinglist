@@ -13,6 +13,8 @@ interface ShoppingListDao {
     fun saveShoppingList(shoppingList: ShoppingList): Completable
     fun getShoppingListById(shoppingListId: ShoppingListId): Maybe<ShoppingList>
     fun getAllShoppingLists(): DataSource.Factory<Int, ShoppingList>
-    fun getAllShoppingListWithItems(shoppingListId: ShoppingListId): Single<ShoppingList>
+    fun getShoppingListWithItems(shoppingListId: ShoppingListId): Single<ShoppingList>
     fun saveShoppingListItems(items: List<ShoppingListItem>): Completable
+    fun getArchivedShoppingLists(): DataSource.Factory<Int, ShoppingList>
+    fun deleteShoppingListWithItems(shoppingList: ShoppingList): Completable
 }

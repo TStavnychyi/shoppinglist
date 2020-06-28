@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msla_archived_shopping_list_fragment_title">Archived lists</string>
+    <string name="msla_archived_shopping_list_unarchive_menu_item">Unarchive</string>
+
+    <string name="msla_archived_shopping_list_adapter_item_tools_title">Picnic</string>
+    <string name="msla_archived_shopping_list_adapter_item_tools_created_date">25.06.2020</string>
+    <string name="msla_archived_shopping_list_adapter_item_tools_status">2/5</string>
+    <string name="msla_archived_shopping_list_adapter_item_options_icon_content_description">Shopping lists item options</string>
+
+</resources>

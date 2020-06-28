@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="msla_shopping_list_toolbar_title">My shopping lists</string>
-
-    <string name="msla_shopping_list_adapter_item_tools_title">Picnic</string>
-    <string name="msla_shopping_list_adapter_item_tools_created_date">25.06.2020</string>
-    <string name="msla_shopping_list_adapter_item_tools_status">2/5</string>
-    <string name="msla_shopping_list_adapter_item_options_icon_content_description">Shopping lists item options</string>
-
-    <string name="msla_shopping_list_empty_screen_icon_content_description">Empty shopping list</string>
-    <string name="msla_shopping_list_empty_screen_title">Your List is Empty</string>
-    <string name="msla_shopping_list_empty_screen_subtitle">Create you first shopping list for an easier shopping experience </string>
-
+    <string name="msla_shopping_list_adapter_item_options_archive">Archive</string>
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/msla_shopping_list_details_navigation"
+    app:startDestination="@id/shoppingListDetailsFragment">
+
+    <dialog
+        android:id="@+id/addShoppingListItemBottomSheet"
+        android:name="com.stavnychyy.shoppinglist.view.AddShoppingListItemBottomSheet" >
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="notes"
+            app:argType="string"
+            app:nullable="true" />
+    </dialog>
+    <fragment
+        android:id="@+id/shoppingListDetailsFragment"
+        android:name="com.stavnychyy.shoppinglist.view.ShoppingListDetailsFragment">
+        <action
+            android:id="@+id/action_shoppingListDetailsFragment_to_addShoppingListItemBottomSheet"
+            app:destination="@id/addShoppingListItemBottomSheet" />
+        <argument
+            android:name="shoppingListId"
+            app:argType="com.stavnychyy.shoppinglist.PCLShoppingListId" />
+    </fragment>
+</navigation>

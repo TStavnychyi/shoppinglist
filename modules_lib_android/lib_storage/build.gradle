@@ -10,7 +10,7 @@ dependencies {
 
     implementation deps.dagger2
     implementation deps.androidx.paging
-    implementation deps.androidx.paging_rxjava
+    implementation deps.androidx.paging_rxjava_ktx
     kapt deps.dagger2_processor
 
     implementation project(':lib_domain')

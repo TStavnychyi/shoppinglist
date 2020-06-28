@@ -8,7 +8,7 @@ dependencies {
     implementation project(':lib_storage')
 
     implementation deps.androidx.paging
-    implementation deps.androidx.paging_rxjava
+    implementation deps.androidx.paging_rxjava_ktx
 
     implementation deps.androidx.lifecycle_viewmodel
     implementation deps.androidx.lifecycle_livedata

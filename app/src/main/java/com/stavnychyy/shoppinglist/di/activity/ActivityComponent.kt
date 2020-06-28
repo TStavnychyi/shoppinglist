@@ -1,5 +1,6 @@
 package com.stavnychyy.shoppinglist.di.activity
 
+import com.stavnychyy.shoppinglist.di.ArchivedShoppingListComponent
 import com.stavnychyy.shoppinglist.di.ShoppingListComponent
 import com.stavnychyy.shoppinglist.view.MainActivity
 import dagger.BindsInstance
@@ -19,7 +20,10 @@ interface ActivityComponent {
     fun inject(activity: MainActivity)
 
     fun shoppingListComponentFactory(): ShoppingListComponent.Factory
+    fun archivedShoppingListComponentFactory(): ArchivedShoppingListComponent.Factory
 }
 
-@Module(subcomponents = [ShoppingListComponent::class])
+@Module(
+    subcomponents = [ShoppingListComponent::class, ArchivedShoppingListComponent::class]
+)
 private object SubcomponentsModule

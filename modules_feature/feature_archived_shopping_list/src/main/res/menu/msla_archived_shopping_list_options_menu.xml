@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item_unarchive"
+        android:icon="@drawable/msla_archive_shopping_list_unarchive_icon"
+        android:title="@string/msla_archived_shopping_list_unarchive_menu_item"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/item_remove"
+        android:icon="@drawable/msla_common_shopping_list_remove_icon"
+        android:title="@string/msla_common_shopping_list_adapter_item_options_remove"
+        app:showAsAction="ifRoom" />
+</menu>

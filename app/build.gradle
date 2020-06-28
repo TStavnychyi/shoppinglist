@@ -22,7 +22,7 @@ dependencies {
     implementation project(':feature_add_shopping_list')
     implementation project(':feature_archived_shopping_list')
     implementation project(':feature_shopping_list')
-    implementation project(':feature_edit_shopping_list')
+    implementation project(':feature_shopping_list_details')
     implementation project(':lib_common')
     implementation project(':lib_domain')
     implementation project(':lib_parcelable_domain')

@@ -10,7 +10,7 @@ include ':app',
         ':feature_add_shopping_list',
         ':feature_shopping_list',
         ':feature_archived_shopping_list',
-        ':feature_edit_shopping_list'
+        ':feature_shopping_list_details'
 
 project(':lib_common').projectDir = file('modules_lib_android/lib_common')
 project(':lib_storage').projectDir = file('modules_lib_android/lib_storage')
@@ -21,4 +21,4 @@ project(':lib_domain').projectDir = file('modules_lib_kotlin/lib_domain')
 project(':feature_add_shopping_list').projectDir = file('modules_feature/feature_add_shopping_list')
 project(':feature_shopping_list').projectDir = file('modules_feature/feature_shopping_list')
 project(':feature_archived_shopping_list').projectDir = file('modules_feature/feature_archived_shopping_list')
-project(':feature_edit_shopping_list').projectDir = file('modules_feature/feature_edit_shopping_list')
+project(':feature_shopping_list_details').projectDir = file('modules_feature/feature_shopping_list_details')

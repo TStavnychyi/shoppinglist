@@ -10,7 +10,9 @@ import com.stavnychyy.shoppinglist.viewmodel.ShoppingListItemViewEntity
 
 
 class ShoppingListAdapter :
-    PagedListAdapter<ShoppingListItemViewEntity, ShoppingListItemViewHolder>(DefaultListDiffUtilCallback()) {
+    PagedListAdapter<ShoppingListItemViewEntity, ShoppingListItemViewHolder>(
+        DefaultListDiffUtilCallback()
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingListItemViewHolder {
         val itemView = parent.layoutInflater().inflateNoAttach(

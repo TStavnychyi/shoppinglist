@@ -5,5 +5,5 @@ import com.stavnychyy.shoppinglist.ShoppingListId
 
 interface AppNavigator {
     fun openAddShoppingListScreen()
-    fun openEditShoppingListScreen(shoppingListId: ShoppingListId)
+    fun opeShoppingListDetailsScreen(shoppingListId: ShoppingListId, inReadMode: Boolean)
 }
