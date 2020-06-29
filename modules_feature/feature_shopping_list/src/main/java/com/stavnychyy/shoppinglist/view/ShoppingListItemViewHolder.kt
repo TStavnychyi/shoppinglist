@@ -14,7 +14,6 @@ class ShoppingListItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     with(viewEntity) {
       itemView.view_title.text = title
       itemView.view_created_date.text = createdDate
-      itemView.view_status.text = status
       itemView.view_options.setOnClickListener {
         openPopupMenu(
           viewEntity.shoppingList,

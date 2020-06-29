@@ -1,11 +1,11 @@
 package com.stavnychyy.shoppinglist.view
 
 import android.os.Bundle
-import androidx.activity.addCallback
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import com.stavnychyy.shoppinglist.R
 import com.stavnychyy.shoppinglist.ShoppingListApplication
 import com.stavnychyy.shoppinglist.di.ArchivedShoppingListComponent
@@ -13,7 +13,6 @@ import com.stavnychyy.shoppinglist.di.ArchivedShoppingListComponentFactoryProvid
 import com.stavnychyy.shoppinglist.di.ShoppingListComponent
 import com.stavnychyy.shoppinglist.di.ShoppingListComponentProvider
 import com.stavnychyy.shoppinglist.di.activity.ActivityComponent
-import com.stavnychyy.shoppinglist.extensions.visibleOrGone
 import kotlinx.android.synthetic.main.msla_activity_main.*
 import javax.inject.Inject
 
@@ -30,22 +29,32 @@ class MainActivity : AppCompatActivity(), ShoppingListComponentProvider,
     super.onCreate(savedInstanceState)
     setContentView(R.layout.msla_activity_main)
     setSupportActionBar(view_toolbar)
-
     activityComponent.inject(this)
 
-    view_bottom_nav.setupWithNavController(navController)
     NavigationUI.setupActionBarWithNavController(this, navController)
 
-    onBackPressedDispatcher.addCallback {
-      NavigationUI.navigateUp(navController, null)
-    }
-
-    val destinationsWithNoBottomNavigation: Array<Int> = arrayOf(
-      R.id.shoppingListDetailsFragment
+    val destinationsWithNoToolbarButton: Array<Int> = arrayOf(
+      R.id.shoppingListDetailsFragment,
+      R.id.archived_shopping_list_fragment
     )
-    navController.addOnDestinationChangedListener { _, destination, arguments ->
-      view_bottom_nav.visibleOrGone(destinationsWithNoBottomNavigation.all { it != destination.id })
+    navController.addOnDestinationChangedListener { _, destination, _ ->
+      view_toolbar.menu.findItem(
+        R.id.archived_shopping_list_fragment
+      )?.isVisible = !destinationsWithNoToolbarButton.any { it == destination.id }
     }
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.msla_toolbar_menu, menu)
+    return true
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    if (item.itemId == R.id.archived_shopping_list_fragment) {
+      navController.navigate(ShoppingListFragmentDirections.actionShoppingListFragmentToArchivedShoppingListFragment())
+      return true
+    }
+    return super.onOptionsItemSelected(item)
   }
 
   override fun provideShoppingListComponent(): ShoppingListComponent {
@@ -56,14 +65,14 @@ class MainActivity : AppCompatActivity(), ShoppingListComponentProvider,
     return activityComponent.archivedShoppingListComponentFactory()
   }
 
+  override fun onSupportNavigateUp(): Boolean {
+    return NavigationUI.navigateUp(navController, null)
+  }
+
   private fun initializeActivityComponent(): ActivityComponent {
     return (application as ShoppingListApplication)
       .appComponent
       .activityComponentFactory()
       .create(this)
-  }
-
-  override fun onSupportNavigateUp(): Boolean {
-    return NavigationUI.navigateUp(navController, null)
   }
 }

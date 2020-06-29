@@ -10,12 +10,12 @@ import com.stavnychyy.shoppinglist.shopping_list.DBShoppingListItem.Companion.SH
 @Entity(tableName = SHOPPING_LIST_ITEM_TABLE_NAME, foreignKeys = [ForeignKey(
   entity = DBShoppingList::class,
   parentColumns = [DBShoppingList.ID],
-  childColumns = [DBShoppingListItem.ID],
+  childColumns = [DBShoppingListItem.SHOPPING_LIST_ID],
   onDelete = ForeignKey.CASCADE
 )])
 internal class DBShoppingListItem(
   @ColumnInfo(name = ID) @PrimaryKey(autoGenerate = true) var id: Int?,
-  @ColumnInfo(name = SHOPPING_LIST_ID) val shoppingListId: Int,
+  @ColumnInfo(name = SHOPPING_LIST_ID, index = true) val shoppingListId: Int,
   @ColumnInfo(name = TITLE) val title: String,
   @ColumnInfo(name = NOTES) val notes: String,
   @ColumnInfo(name = IS_CHECKED) val isChecked: Boolean

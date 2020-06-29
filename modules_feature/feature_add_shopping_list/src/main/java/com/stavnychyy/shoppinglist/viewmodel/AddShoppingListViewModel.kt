@@ -17,55 +17,50 @@ import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import javax.inject.Inject
 
-
 class AddShoppingListViewModel @Inject constructor(
-    private val shoppingListRepository: AddShoppingListRepository
+  private val shoppingListRepository: AddShoppingListRepository
 ) : ViewModel() {
 
-    private val disposables = CompositeDisposable()
+  private val disposables = CompositeDisposable()
 
-    val onFormDataInvalidLiveEvent = LiveEvent<ClickEvent>()
-    val onShoppingListAddedSuccessfully = LiveEvent<ClickEvent>()
+  val onFormDataInvalidLiveEvent = LiveEvent<ClickEvent>()
+  val onShoppingListAddedSuccessfully = LiveEvent<ClickEvent>()
 
-    fun saveShoppingList(name: String, purchaseDate: LocalDate) {
-        with(getFormValidationStatus(name, purchaseDate)) {
-            if (this is FormValidStatus) {
-                shoppingListRepository.saveShoppingList(ShoppingList(this.name, this.purchaseDate))
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeBy(
-                        onComplete = { onShoppingListAddedSuccessfully.value = ClickEvent() },
-                        onError = { // TODO: 26/06/2020  open error screen`
-                            val asd = 2
-                        }
-                    ).addTo(disposables)
-            } else {
-                onFormDataInvalidLiveEvent.value = ClickEvent()
-            }
-        }
+  fun saveShoppingList(name: String, purchaseDate: LocalDate) {
+    with(getFormValidationStatus(name, purchaseDate)) {
+      if (this is FormValidStatus) {
+        shoppingListRepository.saveShoppingList(ShoppingList(this.name, this.purchaseDate))
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribeBy(onComplete = { onShoppingListAddedSuccessfully.value = ClickEvent() })
+          .addTo(disposables)
+      } else {
+        onFormDataInvalidLiveEvent.value = ClickEvent()
+      }
+    }
+  }
+
+  override fun onCleared() {
+    disposables.dispose()
+    super.onCleared()
+  }
+
+  fun formatSelectedDayOrMonth(number: Int): String {
+    return if (number < 10) {
+      String.format("%02d", number)
+    } else number.toString()
+  }
+
+  fun formatSelectedDate(selectedDate: String): LocalDate {
+    return LocalDate.parse(selectedDate, DateTimeFormatter.ofPattern(SHOPPING_LIST_DATE_FORMAT))
+  }
+
+  private fun getFormValidationStatus(name: String, purchaseDate: LocalDate): FormValidationStatus {
+    val formattedName = name.trim()
+
+    if (!isShoppingNameValid(formattedName) || !isShoppingPurchaseDateValid(purchaseDate)) {
+      return FormInvalidStatus
     }
 
-    override fun onCleared() {
-        disposables.dispose()
-        super.onCleared()
-    }
-
-    fun formatSelectedDayOrMonth(number: Int): String {
-        return if (number < 10) {
-            String.format("%02d", number)
-        } else number.toString()
-    }
-
-    fun formatSelectedDate(selectedDate: String): LocalDate {
-        return LocalDate.parse(selectedDate, DateTimeFormatter.ofPattern(SHOPPING_LIST_DATE_FORMAT))
-    }
-
-    private fun getFormValidationStatus(name: String, purchaseDate: LocalDate): FormValidationStatus {
-        val formattedName = name.trim()
-
-        if (!isShoppingNameValid(formattedName) || !isShoppingPurchaseDateValid(purchaseDate)) {
-            return FormInvalidStatus
-        }
-
-        return FormValidStatus(formattedName, purchaseDate)
-    }
+    return FormValidStatus(formattedName, purchaseDate)
+  }
 }

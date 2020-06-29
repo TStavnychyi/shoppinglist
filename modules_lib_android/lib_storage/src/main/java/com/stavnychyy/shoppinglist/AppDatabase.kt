@@ -10,7 +10,7 @@ import com.stavnychyy.shoppinglist.shopping_list.RoomShoppingListDao
 import com.stavnychyy.shoppinglist.shopping_list.ShoppingListDao
 import com.stavnychyy.shoppinglist.shopping_list.ShoppingListDaoImpl
 
-@Database(entities = [DBShoppingList::class, DBShoppingListItem::class], version = 1)
+@Database(entities = [DBShoppingList::class, DBShoppingListItem::class], version = 1, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase(), DatabaseProvider {
 

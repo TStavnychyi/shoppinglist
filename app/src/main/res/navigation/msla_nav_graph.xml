@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_shopping_list_fragment_to_edit_shopping_list"
             app:destination="@id/msla_shopping_list_details_navigation" />
+        <action
+            android:id="@+id/action_shopping_list_fragment_to_archived_shopping_list_fragment"
+            app:destination="@id/archived_shopping_list_fragment" />
     </fragment>
     <fragment
         android:id="@+id/archived_shopping_list_fragment"

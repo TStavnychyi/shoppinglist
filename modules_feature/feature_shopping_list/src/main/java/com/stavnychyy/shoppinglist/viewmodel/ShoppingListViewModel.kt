@@ -18,25 +18,27 @@ import org.threeten.bp.format.DateTimeFormatter
 import javax.inject.Inject
 
 class ShoppingListViewModel @Inject constructor(
-  private val shoppingListRepository: ShoppingListRepository,
-  private val appNavigator: AppNavigator
+  private val shoppingListRepository: ShoppingListRepository
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
+  private lateinit var appNavigator: AppNavigator
 
   private val _shoppingListsViewEntity = MutableLiveData<PagedList<ShoppingListItemViewEntity>>()
-  val shoppingListViewEntity: LiveData<PagedList<ShoppingListItemViewEntity>> = _shoppingListsViewEntity
+  val shoppingListViewEntity: LiveData<PagedList<ShoppingListItemViewEntity>> =
+    _shoppingListsViewEntity
+
+  fun setAppNavigator(appNavigator: AppNavigator) {
+    this.appNavigator = appNavigator
+  }
 
   fun getShoppingLists() {
     shoppingListRepository.getAllShoppingLists()
       .map { createShoppingListItemViewEntity(it) }
       .toObservable(pageSize = 10)
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy(
-        onNext = { _shoppingListsViewEntity.value = it },
-        onError = { // TODO: 27/06/2020  show error screen
-        }
-      ).addTo(disposables)
+      .subscribeBy(onNext = { _shoppingListsViewEntity.value = it })
+      .addTo(disposables)
   }
 
   override fun onCleared() {
@@ -44,27 +46,21 @@ class ShoppingListViewModel @Inject constructor(
     super.onCleared()
   }
 
-  private fun openShoppingListScreen(shoppingListId: ShoppingListId) {
-    appNavigator.opeShoppingListDetailsScreen(shoppingListId, false)
+  private fun openShoppingListScreen(shoppingListId: ShoppingListId, shoppingListTitle: String) {
+    appNavigator.opeShoppingListDetailsScreen(shoppingListId, shoppingListTitle, false)
   }
 
   private fun archiveShoppingList(shoppingList: ShoppingList) {
     shoppingListRepository.updateShoppingList(shoppingList.copy(isArchived = true))
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy(
-        onError = {
-          // TODO: 28/06/2020  open error screen
-        }).addTo(disposables)
+      .subscribe()
+      .addTo(disposables)
   }
 
   private fun deleteShoppingList(shoppingList: ShoppingList) {
     shoppingListRepository.deleteShoppingListWithItems(shoppingList)
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy(
-        onError = {
-          // TODO: 28/06/2020  open error screen
-        }
-      )
+      .subscribeBy()
       .addTo(disposables)
   }
 
@@ -73,11 +69,10 @@ class ShoppingListViewModel @Inject constructor(
       ShoppingListItemViewEntity(
         name,
         purchaseDate.format(DateTimeFormatter.ofPattern(SHOPPING_LIST_DATE_FORMAT)),
-        "0/0",
         shoppingList,
         onArchiveItemClickListener = { archiveShoppingList(it) },
         onDeleteItemClickListener = { deleteShoppingList(it) },
-        onItemClickListener = { id?.let { openShoppingListScreen(it) } }
+        onItemClickListener = { id?.let { openShoppingListScreen(it, shoppingList.name) } }
       )
     }
   }

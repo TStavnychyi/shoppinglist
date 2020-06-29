@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">ShoppingList</string>
-
     <string name="msla_archived_shopping_list_bottom_nav_bar_item_title">Archived</string>
     <string name="msla_shopping_list_bottom_nav_bar_item_title">Shopping list</string>
 </resources>

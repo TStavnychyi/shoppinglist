@@ -62,8 +62,8 @@ public class ArchivedShoppingListPresenter implements ArchivedShoppingListViewHo
   }
 
   @Override
-  public void onArchiveShoppingListClick(ShoppingListId shoppingListId) {
-    appNavigator.opeShoppingListDetailsScreen(shoppingListId, true);
+  public void onArchiveShoppingListClick(ShoppingListId shoppingListId, String shoppingListTitle) {
+    appNavigator.opeShoppingListDetailsScreen(shoppingListId, shoppingListTitle, true);
   }
 
   public interface View {

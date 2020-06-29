@@ -10,4 +10,18 @@ dependencies {
     implementation deps.rxjava
     implementation deps.rxkotlin
     implementation deps.rxjava_android
+
+    testImplementation tests.junit
+    testImplementation tests.mockk
+    testImplementation tests.kluent
+    testImplementation tests.kluent_android
+
+
+
+    testImplementation "org.robolectric:robolectric:4.3.1"
+    testImplementation "org.mockito:mockito-android:3.3.3"
+    // Optional -- Robolectric environment
+    testImplementation 'androidx.test:core:1.2.0'
+    // Optional -- Mockito framework
+    testImplementation 'org.mockito:mockito-core:3.3.3'
 }

@@ -9,8 +9,8 @@
     android:focusable="true"
     android:padding="8dp">
 
-    <RadioButton
-        android:id="@+id/view_item_radio"
+    <CheckBox
+        android:id="@+id/view_item_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        app:layout_constraintBottom_toBottomOf="@id/view_item_radio"
-        app:layout_constraintStart_toEndOf="@id/view_item_radio"
+        app:layout_constraintBottom_toBottomOf="@id/view_item_checkbox"
+        app:layout_constraintStart_toEndOf="@id/view_item_checkbox"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
@@ -38,5 +38,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/view_title"
         app:layout_constraintTop_toBottomOf="@id/view_title" />
+
+    <ImageView
+        android:id="@+id/view_item_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/msla_edit_shopping_list_item_delete_icon_content_description"
+        android:padding="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/msla_common_shopping_list_remove_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

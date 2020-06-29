@@ -24,7 +24,7 @@ internal class DBShoppingList(
   )
 
   companion object {
-    const val SHOPPING_LIST_TABLE_NAME = "ShoppingList"
+    const val SHOPPING_LIST_TABLE_NAME = "SHOPPING_LIST"
     const val ID = "ID"
     const val NAME = "NAME"
     const val PURCHASE_DATE = "PURCHASE_DATE"

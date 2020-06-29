@@ -1,19 +1,18 @@
 package com.stavnychyy.shoppinglist.view.adapter
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
+import androidx.paging.PagedListAdapter
 import com.stavnychyy.shoppinglist.R
-import com.stavnychyy.shoppinglist.adapter.DefaultDiffUtilCallback
+import com.stavnychyy.shoppinglist.adapter.DefaultListDiffUtilCallback
 import com.stavnychyy.shoppinglist.extensions.inflateNoAttach
 import com.stavnychyy.shoppinglist.extensions.layoutInflater
 
 
 class ShoppingListItemsAdapter(
     private val isInReadMode: Boolean
-) : RecyclerView.Adapter<ShoppingListItemsViewHolder>() {
-
-    private var items: List<ShoppingListItemViewEntity> = emptyList()
+) : PagedListAdapter<ShoppingListItemViewEntity, ShoppingListItemsViewHolder>(
+    DefaultListDiffUtilCallback()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingListItemsViewHolder {
         return ShoppingListItemsViewHolder(
@@ -24,15 +23,7 @@ class ShoppingListItemsAdapter(
         )
     }
 
-    override fun getItemCount() = items.size
-
     override fun onBindViewHolder(holder: ShoppingListItemsViewHolder, position: Int) {
-        holder.applyViewEntity(items[position])
-    }
-
-    fun setItems(newItems: List<ShoppingListItemViewEntity>) {
-        val diffUtilResult = DiffUtil.calculateDiff(DefaultDiffUtilCallback(items, newItems))
-        items = newItems
-        diffUtilResult.dispatchUpdatesTo(this)
+        getItem(position)?.let { holder.applyViewEntity(it) }
     }
 }

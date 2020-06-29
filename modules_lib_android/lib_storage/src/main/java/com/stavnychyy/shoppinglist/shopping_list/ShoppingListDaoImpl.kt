@@ -12,38 +12,48 @@ import io.reactivex.schedulers.Schedulers
 
 internal class ShoppingListDaoImpl(private val roomDao: RoomShoppingListDao) : ShoppingListDao {
 
-  override fun saveShoppingList(shoppingList: ShoppingList): Completable {
-    return roomDao.saveShoppingList(DBShoppingList(shoppingList))
-      .subscribeOn(Schedulers.io())
-  }
+    override fun saveShoppingList(shoppingList: ShoppingList): Completable {
+        return roomDao.saveShoppingList(DBShoppingList(shoppingList))
+    }
 
-  override fun getShoppingListById(shoppingListId: ShoppingListId): Maybe<ShoppingList> {
-    return roomDao.getShoppingListById(shoppingListId.id)
-      .subscribeOn(Schedulers.io())
-      .map { it.toDomain() }
-  }
+    override fun updateShoppingList(shoppingList: ShoppingList): Completable {
+        return roomDao.updateShoppingList(DBShoppingList(shoppingList))
+    }
 
-  override fun getAllShoppingLists(): DataSource.Factory<Int, ShoppingList> {
-    return roomDao.getAllShoppingLists()
-      .map { it.toDomain() }
-  }
+    override fun getShoppingListById(shoppingListId: ShoppingListId): Maybe<ShoppingList> {
+        return roomDao.getShoppingListById(shoppingListId.id)
+            .subscribeOn(Schedulers.io())
+            .map { it.toDomain() }
+    }
 
-  override fun getShoppingListWithItems(shoppingListId: ShoppingListId): Single<ShoppingList> {
-    return roomDao.getShoppingListWithItems(shoppingListId.id)
-      .subscribeOn(Schedulers.io())
-      .map { it.toDomain() }
-  }
+    override fun getAllShoppingLists(): DataSource.Factory<Int, ShoppingList> {
+        return roomDao.getAllShoppingLists()
+            .map { it.toDomain() }
+    }
 
-  override fun saveShoppingListItems(items: List<ShoppingListItem>): Completable {
-    return roomDao.saveShoppingListItems(items.map { DBShoppingListItem(it) })
-  }
+    override fun getShoppingListWithItems(shoppingListId: ShoppingListId): DataSource.Factory<Int, ShoppingListItem> {
+        return roomDao.getShoppingListWithItems(shoppingListId.id)
+            .map { it.toDomain() }
+    }
 
-  override fun getArchivedShoppingLists(): DataSource.Factory<Int, ShoppingList> {
-    return roomDao.getArchivedShoppingLists()
-      .map { it.toDomain() }
-  }
+    override fun saveShoppingListItem(item: ShoppingListItem): Completable {
+        return roomDao.saveShoppingListItem(DBShoppingListItem(item))
+    }
 
-  override fun deleteShoppingListWithItems(shoppingList: ShoppingList): Completable {
-    return roomDao.deleteShoppingList(DBShoppingList(shoppingList))
-  }
+    override fun saveShoppingListItems(items: List<ShoppingListItem>): Completable {
+        return roomDao.saveShoppingListItems(items.map { DBShoppingListItem(it) })
+    }
+
+    override fun getArchivedShoppingLists(): DataSource.Factory<Int, ShoppingList> {
+        return roomDao.getArchivedShoppingLists()
+            .map { it.toDomain() }
+    }
+
+    override fun deleteShoppingListWithItems(shoppingList: ShoppingList): Completable {
+        return roomDao.deleteShoppingList(DBShoppingList(shoppingList))
+    }
+
+    override fun deleteShoppingListItem(shoppingListItem: ShoppingListItem): Completable {
+        return roomDao.deleteShoppingListItem(DBShoppingListItem(shoppingListItem))
+    }
 }

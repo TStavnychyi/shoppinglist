@@ -7,6 +7,8 @@ dependencies {
     implementation deps.rxjava
     implementation deps.rxkotlin
     implementation deps.rxjava_android
+    implementation deps.androidx.paging
+    implementation deps.androidx.paging_rxjava_ktx
 
     implementation project(':lib_common')
     implementation project(':lib_domain')

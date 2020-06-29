@@ -2,13 +2,11 @@ package com.stavnychyy.shoppinglist.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.stavnychyy.shoppinglist.ShoppingList
+import androidx.paging.PagedList
+import androidx.paging.toObservable
 import com.stavnychyy.shoppinglist.ShoppingListId
 import com.stavnychyy.shoppinglist.ShoppingListItem
-import com.stavnychyy.shoppinglist.extensions.plusAssign
-import com.stavnychyy.shoppinglist.lifecycle.LiveEvent
 import com.stavnychyy.shoppinglist.model.EditShoppingListRepository
 import com.stavnychyy.shoppinglist.view.adapter.ShoppingListItemViewEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,49 +20,43 @@ class ShoppingListDetailsViewModel @Inject constructor(
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
-  private val _shoppingListItemsLiveData = MutableLiveData<MutableList<ShoppingListItem>>()
-  private lateinit var shoppingList: ShoppingList
   private lateinit var shoppingListId: ShoppingListId
-  private val newShoppingListItems = mutableListOf<ShoppingListItem>()
-
-  val shoppingListItemsLiveData: LiveData<List<ShoppingListItemViewEntity>> =
-    Transformations.map(_shoppingListItemsLiveData) {
-      it.map { ShoppingListItemViewEntity.create(it) }
-    }
-
-  val changeFragmentTitleLiveEvent = LiveEvent<String>()
+  private val updatedItems: MutableSet<ShoppingListItem> = mutableSetOf()
+  private val _shoppingListItemsLiveData = MutableLiveData<PagedList<ShoppingListItemViewEntity>>()
+  val shoppingListItemsLiveData: LiveData<PagedList<ShoppingListItemViewEntity>> = _shoppingListItemsLiveData
 
   fun loadShoppingList(shoppingListId: ShoppingListId) {
     this.shoppingListId = shoppingListId
-    shoppingListRepository.getShoppingListWithItems(shoppingListId)
+    shoppingListRepository.getShoppingListItems(shoppingListId)
+      .map { ShoppingListItemViewEntity.create(it, ::deleteShoppingListItem, ::onShoppingListItemCheckedChanged) }
+      .toObservable(pageSize = 10)
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy(
-        onSuccess = {
-          changeFragmentTitleLiveEvent.value = it.name
-          _shoppingListItemsLiveData.value = it.items.toMutableList()
-          shoppingList = it
-        },
-        onError = {
-          // TODO: 27/06/2020  open error screen
-        }
-      ).addTo(disposables)
-  }
-
-  fun saveShoppingList() {
-    if (newShoppingListItems.isNotEmpty()) {
-      shoppingListRepository.saveShoppingListItems(newShoppingListItems)
-        .subscribeBy(
-          onError = {
-            // TODO: 27/06/2020  open error screen
-          }).addTo(disposables)
-    }
+      .subscribeBy(onNext = { _shoppingListItemsLiveData.value = it })
+      .addTo(disposables)
   }
 
   fun addShoppingListItem(title: String, subtitle: String) {
-    with(ShoppingListItem(title, subtitle, false, shoppingListId)) {
-      newShoppingListItems.add(this)
-      _shoppingListItemsLiveData.plusAssign(this)
+    shoppingListRepository.saveShoppingListItem(ShoppingListItem(title, subtitle, false, shoppingListId))
+      .subscribe()
+      .addTo(disposables)
+  }
+
+  fun saveChanges() {
+    if (updatedItems.isNotEmpty()) {
+      shoppingListRepository.saveShoppingListItems(updatedItems.toList())
+        .subscribeBy()
+        .addTo(disposables)
     }
+  }
+
+  private fun deleteShoppingListItem(shoppingListItem: ShoppingListItem) {
+    shoppingListRepository.deleteShoppingListItem(shoppingListItem)
+      .subscribe()
+      .addTo(disposables)
+  }
+
+  private fun onShoppingListItemCheckedChanged(shoppingListItem: ShoppingListItem) {
+    updatedItems.add(shoppingListItem)
   }
 
   override fun onCleared() {

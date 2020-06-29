@@ -12,10 +12,10 @@ class InstalledAppNavigator(private val navController: NavController) : AppNavig
         navController.navigate(R.id.open_add_shopping_list_screen)
     }
 
-    override fun opeShoppingListDetailsScreen(shoppingListId: ShoppingListId, inReadMode: Boolean) {
+    override fun opeShoppingListDetailsScreen(shoppingListId: ShoppingListId, title: String, inReadMode: Boolean) {
         navController.navigate(
             R.id.msla_shopping_list_details_navigation,
-            ShoppingListDetailsFragment.createBundle(shoppingListId, inReadMode)
+            ShoppingListDetailsFragment.createBundle(shoppingListId, title, inReadMode)
         )
     }
 }

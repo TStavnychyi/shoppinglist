@@ -2,24 +2,23 @@ package com.stavnychyy.shoppinglist.view;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.stavnychyy.shoppinglist.R;
 import com.stavnychyy.shoppinglist.di.ArchivedShoppingListComponentFactoryProvider;
-import com.stavnychyy.shoppinglist.fragment.BaseFragment;
 import com.stavnychyy.shoppinglist.presenter.ArchivedShoppingListPresenter;
 import com.stavnychyy.shoppinglist.presenter.ArchivedShoppingListViewEntity;
 import javax.inject.Inject;
 
-public class ArchivedShoppingListFragment extends BaseFragment implements ArchivedShoppingListPresenter.View {
-
-  public ArchivedShoppingListFragment() {
-    super(R.layout.msla_archived_shopping_list_fragment);
-  }
+public class ArchivedShoppingListFragment extends Fragment implements ArchivedShoppingListPresenter.View {
 
   @Inject
   ArchivedShoppingListPresenter presenter;
@@ -44,10 +43,18 @@ public class ArchivedShoppingListFragment extends BaseFragment implements Archiv
     presenter.loadData();
   }
 
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater,
+                           @Nullable ViewGroup container,
+                           @Nullable Bundle savedInstanceState) {
+    return inflater.inflate(R.layout.msla_archived_shopping_list_fragment, container, false);
+  }
+
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    changeToolbarTitle(getString(R.string.msla_archived_shopping_list_fragment_title));
+    changeFragmentTitle();
     archivedShoppingList = view.findViewById(R.id.view_archived_list);
     emptyListView = view.findViewById(R.id.view_empty_list);
     initRecyclerView();
@@ -79,5 +86,10 @@ public class ArchivedShoppingListFragment extends BaseFragment implements Archiv
       emptyListView.setVisibility(View.VISIBLE);
       archivedShoppingList.setVisibility(View.GONE);
     }
+  }
+
+  private void changeFragmentTitle() {
+    ((AppCompatActivity) getActivity()).getSupportActionBar()
+      .setTitle(R.string.msla_archived_shopping_list_fragment_title);
   }
 }
