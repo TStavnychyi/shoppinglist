@@ -1,6 +1,6 @@
 package com.stavnychyy.shoppinglist.shoppinglistdetails.di
 
-import com.stavnychyy.shoppinglist.shoppinglistdetails.view.AddShoppingListItemBottomSheet
+import com.stavnychyy.shoppinglist.shoppinglistdetails.view.ShoppingListItemBottomSheet
 import com.stavnychyy.shoppinglist.shoppinglistdetails.view.ShoppingListDetailsFragment
 import dagger.BindsInstance
 import dagger.Subcomponent
@@ -15,5 +15,5 @@ interface ShoppingListDetailsComponent {
     }
 
     fun inject(fragment: ShoppingListDetailsFragment)
-    fun inject(fragment: AddShoppingListItemBottomSheet)
+    fun inject(fragment: ShoppingListItemBottomSheet)
 }

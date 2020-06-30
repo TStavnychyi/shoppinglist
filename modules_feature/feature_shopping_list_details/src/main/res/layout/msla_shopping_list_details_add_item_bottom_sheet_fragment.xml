@@ -14,10 +14,10 @@
       android:layout_marginBottom="6dp"
       android:hint="@string/msla_shopping_list_details_item_name_hint"
       android:importantForAutofill="no"
-      android:inputType="text"
       app:layout_constraintBottom_toTopOf="@id/view_item_additional_info"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent" />
+      app:layout_constraintStart_toStartOf="parent"
+      style="@style/CommonEditText" />
 
   <EditText
       android:id="@+id/view_item_additional_info"
@@ -26,14 +26,14 @@
       android:layout_marginBottom="24dp"
       android:hint="@string/msla_shopping_list_details_item_additional_info_hint"
       android:importantForAutofill="no"
-      android:inputType="text"
       app:layout_constraintBottom_toTopOf="@id/view_add_item_button"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent" />
+      app:layout_constraintStart_toStartOf="parent"
+      style="@style/CommonEditText" />
 
   <Button
       android:id="@+id/view_add_item_button"
-      android:layout_width="wrap_content"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:enabled="false"
       android:text="@string/msla_shopping_list_details_save_item_button_title"

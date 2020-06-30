@@ -7,6 +7,7 @@ import androidx.paging.PagedList
 import androidx.paging.toObservable
 import com.stavnychyy.shoppinglist.domain.ShoppingListId
 import com.stavnychyy.shoppinglist.domain.ShoppingListItem
+import com.stavnychyy.shoppinglist.domain.ShoppingListItemId
 import com.stavnychyy.shoppinglist.shoppinglistdetails.model.ShoppingListDetailsRepository
 import com.stavnychyy.shoppinglist.shoppinglistdetails.view.adapter.ShoppingListItemViewEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -35,9 +36,10 @@ class ShoppingListDetailsViewModel @Inject constructor(
       .addTo(disposables)
   }
 
-  fun addShoppingListItem(title: String, subtitle: String) {
+  fun addShoppingListItem(shoppingListItemId: ShoppingListItemId?, title: String, subtitle: String) {
     shoppingListDetailsRepository.saveShoppingListItem(
-      ShoppingListItem(title, subtitle, false, shoppingListId))
+      ShoppingListItem(title, subtitle, false, shoppingListId, shoppingListItemId)
+    )
       .subscribe()
       .addTo(disposables)
   }

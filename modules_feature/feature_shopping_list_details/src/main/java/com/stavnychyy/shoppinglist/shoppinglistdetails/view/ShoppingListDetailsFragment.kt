@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -32,7 +34,7 @@ class ShoppingListDetailsFragment : Fragment() {
     private const val SHOPPING_LIST_TITLE_ARG = "SHOPPING_LIST_TITLE_ARG"
     private const val IS_SHOPPING_LIST_IN_READ_MODE_ARG = "IS_SHOPPING_LIST_IN_READ_MODE_ARG"
 
-    internal const val ADDED_SHOPPING_LIST_ITEM = "ADDED_SHOPPING_LIST_ITEM"
+    internal const val SHOPPING_LIST_ITEM = "SHOPPING_LIST_ITEM"
 
     fun createBundle(
       shoppingListId: ShoppingListId,
@@ -115,11 +117,16 @@ class ShoppingListDetailsFragment : Fragment() {
         shoppingListItemsAdapter.submitList(it)
       })
 
-      findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<AddingShoppingListItemResult>(
-        ADDED_SHOPPING_LIST_ITEM
-      )?.observe(viewLifecycleOwner, Observer {
-        addShoppingListItem(it.title, it.subtitle)
-      })
+      handleShoppingListItemBottomSheetResult()
+
+//      findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<AddingShoppingListItemResult>(
+//        SHOPPING_LIST_ITEM
+//      )?.observe(viewLifecycleOwner, Observer {
+//        addShoppingListItem(it.shoppingListItemId, it.title, it.subtitle)
+//        findNavController().currentBackStackEntry?.savedStateHandle?.remove<AddingShoppingListItemResult>(
+//          SHOPPING_LIST_ITEM
+//        )
+//      })
     }
   }
 
@@ -135,6 +142,22 @@ class ShoppingListDetailsFragment : Fragment() {
     }
   }
 
+  private fun handleShoppingListItemBottomSheetResult() {
+    val navBackStackEntry = findNavController().getBackStackEntry(R.id.shoppingListDetailsFragment)
+    val observer = LifecycleEventObserver { _, event ->
+      if (event == Lifecycle.Event.ON_RESUME && navBackStackEntry.savedStateHandle.contains(SHOPPING_LIST_ITEM)) {
+        val result = navBackStackEntry.savedStateHandle.get<AddingShoppingListItemResult>(SHOPPING_LIST_ITEM)
+        result?.let { viewModel.addShoppingListItem(it.shoppingListItemId, it.title, it.subtitle) }
+      }
+    }
+    navBackStackEntry.lifecycle.addObserver(observer)
+    viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+      if (event == Lifecycle.Event.ON_DESTROY) {
+        navBackStackEntry.lifecycle.removeObserver(observer)
+      }
+    })
+  }
+
   private fun changeEmptyScreenSubtitle() {
     val subtitle = requireView().findViewById<TextView>(commonR.id.view_subtitle)
     subtitle.text = getText(R.string.msla_shopping_list_details_empty_screen_title)
@@ -143,6 +166,7 @@ class ShoppingListDetailsFragment : Fragment() {
   private fun openAddShoppingListItemBottomSheet() {
     findNavController().navigate(
       ShoppingListDetailsFragmentDirections.actionShoppingListDetailsFragmentToAddShoppingListItemBottomSheet(
+        null,
         null,
         null
       )

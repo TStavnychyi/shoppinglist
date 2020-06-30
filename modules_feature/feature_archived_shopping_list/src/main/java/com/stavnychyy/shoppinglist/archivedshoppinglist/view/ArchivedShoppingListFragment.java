@@ -43,12 +43,6 @@ public class ArchivedShoppingListFragment extends Fragment implements ArchivedSh
     provider.provideArchivedListComponentFactory().create(this).inject(this);
   }
 
-  @Override
-  public void onCreate(@org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    presenter.get().loadData();
-  }
-
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -60,10 +54,11 @@ public class ArchivedShoppingListFragment extends Fragment implements ArchivedSh
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    presenter.get().setAppNavigator(appNavigator.get());
-    changeFragmentTitle();
     archivedShoppingList = view.findViewById(R.id.view_archived_list);
     emptyListView = view.findViewById(R.id.view_empty_list);
+    presenter.get().loadData();
+    presenter.get().setAppNavigator(appNavigator.get());
+    changeFragmentTitle();
     initRecyclerView();
   }
 
@@ -96,7 +91,6 @@ public class ArchivedShoppingListFragment extends Fragment implements ArchivedSh
   }
 
   private void changeFragmentTitle() {
-    ((AppCompatActivity) getActivity()).getSupportActionBar()
-      .setTitle(R.string.msla_archived_shopping_list_fragment_title);
+    ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.msla_archived_shopping_list_fragment_title);
   }
 }

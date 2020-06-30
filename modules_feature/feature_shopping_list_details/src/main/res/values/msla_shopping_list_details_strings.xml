@@ -6,4 +6,7 @@
     <string name="msla_shopping_list_details_item_additional_info_hint">Kind, Amount, Note</string>
     <string name="msla_shopping_list_details_delete_icon_content_description">Icon delete item</string>
     <string name="msla_shopping_list_details_empty_screen_title">Create you first shopping list item</string>
+    <string name="msla_shopping_list_details_delete_item_confirmation_dialog_title">Delete item?</string>
+    <string name="msla_shopping_list_details_delete_item_confirmation_dialog_confirm">Confirm</string>
+    <string name="msla_shopping_list_details_delete_item_confirmation_dialog_cancel">Cancel</string>
 </resources>
