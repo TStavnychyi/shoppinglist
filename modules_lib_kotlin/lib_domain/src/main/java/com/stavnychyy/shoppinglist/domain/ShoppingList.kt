@@ -13,8 +13,8 @@ data class ShoppingList(
     return this.copy(isArchived = isArchived)
   }
 
-  fun getCheckedItemsCount(): String {
+  fun createShoppingListCompletedTasks(): ShoppingListCompletedTasks {
     val checkedShoppingListItems = items.count { it.isChecked }
-    return "$checkedShoppingListItems/${items.size}"
+    return ShoppingListCompletedTasks(checkedShoppingListItems, items.size)
   }
 }

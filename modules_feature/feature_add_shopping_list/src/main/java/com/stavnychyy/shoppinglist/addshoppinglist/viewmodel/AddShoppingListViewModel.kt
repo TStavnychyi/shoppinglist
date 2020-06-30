@@ -1,16 +1,11 @@
 package com.stavnychyy.shoppinglist.addshoppinglist.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.stavnychyy.shoppinglist.addshoppinglist.model.*
 import com.stavnychyy.shoppinglist.common.SHOPPING_LIST_DATE_FORMAT
-import com.stavnychyy.shoppinglist.domain.ShoppingList
 import com.stavnychyy.shoppinglist.common.lifecycle.ClickEvent
 import com.stavnychyy.shoppinglist.common.lifecycle.LiveEvent
-import com.stavnychyy.shoppinglist.addshoppinglist.model.AddShoppingListRepository
-import com.stavnychyy.shoppinglist.addshoppinglist.model.FormInvalidStatus
-import com.stavnychyy.shoppinglist.addshoppinglist.model.FormValidStatus
-import com.stavnychyy.shoppinglist.addshoppinglist.model.FormValidationStatus
-import com.stavnychyy.shoppinglist.addshoppinglist.model.isShoppingNameValid
-import com.stavnychyy.shoppinglist.addshoppinglist.model.isShoppingPurchaseDateValid
+import com.stavnychyy.shoppinglist.domain.ShoppingList
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -61,13 +56,10 @@ class AddShoppingListViewModel @Inject constructor(
   private fun getFormValidationStatus(name: String, purchaseDate: LocalDate): FormValidationStatus {
     val formattedName = name.trim()
 
-    if (!isShoppingNameValid(
-        formattedName) || !isShoppingPurchaseDateValid(
-        purchaseDate)) {
+    if (!isShoppingNameValid(formattedName) || !isShoppingPurchaseDateValid(purchaseDate)) {
       return FormInvalidStatus
     }
 
-    return FormValidStatus(formattedName,
-                                                                                                purchaseDate)
+    return FormValidStatus(formattedName, purchaseDate)
   }
 }

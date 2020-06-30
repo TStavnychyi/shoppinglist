@@ -6,10 +6,11 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.stavnychyy.shoppinglist.domain.ShoppingList;
-import com.stavnychyy.shoppinglist.domain.ShoppingListId;
 import com.stavnychyy.shoppinglist.archivedshoppinglist.R;
 import com.stavnychyy.shoppinglist.archivedshoppinglist.presenter.ArchivedShoppingListViewEntity;
+import com.stavnychyy.shoppinglist.common.view.CompletedTasksChartView;
+import com.stavnychyy.shoppinglist.domain.ShoppingList;
+import com.stavnychyy.shoppinglist.domain.ShoppingListId;
 
 public class ArchivedShoppingListViewHolder extends RecyclerView.ViewHolder {
 
@@ -21,14 +22,15 @@ public class ArchivedShoppingListViewHolder extends RecyclerView.ViewHolder {
 
   private TextView viewCreatedDate = itemView.findViewById(R.id.view_created_date);
 
-  private TextView viewCheckedItemsCount = itemView.findViewById(R.id.view_checked_items_count);
+  private CompletedTasksChartView viewCompletedShoppingTasks =
+    itemView.findViewById(R.id.view_completed_shopping_tasks);
 
   private ImageView viewOptions = itemView.findViewById(R.id.view_options);
 
   public void applyViewEntity(ArchivedShoppingListViewEntity viewEntity) {
     viewTitle.setText(viewEntity.getTitle());
     viewCreatedDate.setText(viewEntity.getPurchaseDate());
-    viewCheckedItemsCount.setText(viewEntity.getShoppingList().getCheckedItemsCount());
+    viewCompletedShoppingTasks.applyViewEntity(viewEntity.getShoppingList().createShoppingListCompletedTasks());
     viewOptions.setOnClickListener(v -> {
       openPopupMenu(viewEntity.getShoppingList(), viewEntity.getListeners());
     });

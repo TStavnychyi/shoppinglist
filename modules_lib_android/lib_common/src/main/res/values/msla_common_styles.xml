@@ -1,9 +1,9 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/msla_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/msla_colorPrimaryDark</item>
+        <item name="colorAccent">@color/msla_colorAccent</item>
     </style>
 
     <style name="BottomSheetStyle" parent="Theme.Design.Light.BottomSheetDialog">
@@ -13,7 +13,7 @@
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.ActionBar">
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/msla_colorPrimary</item>
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
@@ -28,11 +28,6 @@
     </style>
 
     <style name="ShoppingListItemCreatedDate">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@android:color/black</item>
-    </style>
-
-    <style name="ShoppingListItemStatus">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@android:color/black</item>
     </style>

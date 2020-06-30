@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00bc68</color>
-    <color name="colorPrimaryDark">#008a3c</color>
-    <color name="colorAccent">#5af097</color>
+    <color name="msla_colorPrimary">#00bc68</color>
+    <color name="msla_colorPrimaryDark">#008a3c</color>
+    <color name="msla_colorAccent">#5af097</color>
+
+    <color name="msla_common_grey_1">#A1A1A1</color>
 
     <color name="msla_common_high_priority_shopping_list">#FF0000</color>
     <color name="msla_common_medium_priority_shopping_list">#008000</color>

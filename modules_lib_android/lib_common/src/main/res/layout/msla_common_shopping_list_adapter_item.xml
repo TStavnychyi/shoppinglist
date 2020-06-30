@@ -32,16 +32,14 @@
         tools:text="@string/msla_common_shopping_list_adapter_item_tools_created_date"
         style="@style/ShoppingListItemCreatedDate" />
 
-    <TextView
-        android:id="@+id/view_checked_items_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.stavnychyy.shoppinglist.common.view.CompletedTasksChartView
+        android:id="@+id/view_completed_shopping_tasks"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/view_options"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/msla_common_shopping_list_adapter_item_tools_checked_items_count"
-        style="@style/ShoppingListItemStatus" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/view_options"

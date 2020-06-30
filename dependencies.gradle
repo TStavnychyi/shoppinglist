@@ -22,9 +22,10 @@ versions.rxandroid = "2.1.1"
 versions.threetenabp = "1.2.4"
 
 //Testing libs
-versions.junit = '4.13-rc-2'
 versions.mockk = "1.9.3"
-versions.kluent = "1.58"
+versions.junit = "4.12"
+versions.arch_core = "2.1.0"
+versions.test_threetenbp = "1.4.4"
 
 //============= BUILD CONFIG =================
 ext.config = [:]
@@ -56,8 +57,8 @@ deps.threetenbp = "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp
 ext.tests = [:]
 tests.junit = "junit:junit:$versions.junit"
 tests.mockk = "io.mockk:mockk:$versions.mockk"
-tests.kluent = "org.amshove.kluent:kluent:$versions.kluent"
-tests.kluent_android = "org.amshove.kluent:kluent-android:$versions.kluent"
+tests.arch_core = "androidx.arch.core:core-testing:$versions.arch_core"
+tests.threetenbp = "org.threeten:threetenbp:$versions.test_threetenbp"
 
 def androidx = [:]
 androidx.recyclerview = "androidx.recyclerview:recyclerview:$versions.androidx_recyclerview"

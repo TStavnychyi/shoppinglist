@@ -1,29 +1,52 @@
 package com.stavnychyy.shoppinglist.tests
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
 import com.stavnychyy.shoppinglist.addshoppinglist.model.AddShoppingListRepository
 import com.stavnychyy.shoppinglist.addshoppinglist.viewmodel.AddShoppingListViewModel
+import com.stavnychyy.shoppinglist.common.lifecycle.ClickEvent
+import com.stavnychyy.shoppinglist.common.lifecycle.Event
+import com.stavnychyy.shoppinglist.domain.ShoppingList
+import com.stavnychyy.shoppinglist.tests.util.RxSchedulerRule
+import com.stavnychyy.shoppinglist.tests.util.testObserver
+import io.mockk.every
 import io.mockk.mockk
-import org.amshove.kluent.shouldEqual
+import io.reactivex.Completable
+import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.schedulers.Schedulers
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
+import org.junit.runners.JUnit4
 import org.threeten.bp.LocalDate
-import org.threeten.bp.format.DateTimeFormatter
 
-@RunWith(RobolectricTestRunner::class)
-@Config(manifest = Config.NONE)
-internal class AddShoppingListViewModelTest {
+@RunWith(JUnit4::class)
+class AddShoppingListViewModelTest {
+
+  @get:Rule
+  val rxSchedulerRule = RxSchedulerRule()
+
+  @get:Rule
+  var instantTaskExecutorRule = InstantTaskExecutorRule()
 
   private lateinit var viewModel: AddShoppingListViewModel
+
   private lateinit var repository: AddShoppingListRepository
+
+  private lateinit var observer: Observer<Event<ClickEvent>>
 
   @Before
   fun setUp() {
+    RxAndroidPlugins.setInitMainThreadSchedulerHandler { handler ->
+      Schedulers.trampoline()
+    }
+
     repository = mockk(relaxed = true)
-    viewModel = AddShoppingListViewModel(
-      repository)
+    observer = mockk(relaxed = true)
+    viewModel = AddShoppingListViewModel(repository)
   }
 
   @Test
@@ -36,22 +59,39 @@ internal class AddShoppingListViewModelTest {
     val actualDay = viewModel.formatSelectedDayOrMonth(givenDay)
 
     // then
-    expectedDay shouldEqual actualDay
+    assertEquals(expectedDay, actualDay)
   }
-
 
   @Test
-  fun `should validation return FormInvalidStatus when wrong DateTimeFormatter is passed`() {
+  fun `should save shopping list notify view about invalid data`() {
     // given
-    val giveName = "Dummy"
-    val givenDate = LocalDate.now()
-    val givenDateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+    val givenName = "Random list name"
+    val givenDate = LocalDate.now().minusDays(1)
+    val givenShoppingList = ShoppingList(givenName, givenDate)
 
     // when
-//    val actualFormValidationStatus = viewModel.getFormValidationStatus(giveName, givenDate)
+    val liveEventUnderTest = viewModel.onFormDataInvalidLiveEvent.testObserver()
+
+    viewModel.saveShoppingList(givenName, givenDate)
 
     // then
-//    expectedDay shouldEqual actualDay
+    assertTrue(liveEventUnderTest.observedValues.isNotEmpty() && liveEventUnderTest.observedValues.first() is Event)
   }
 
+  @Test
+  fun `save shopping list and get notified about successful operation`() {
+    // given
+    val givenName = "Random list name"
+    val givenDate = LocalDate.now()
+    val givenShoppingList = ShoppingList(givenName, givenDate)
+
+    // when
+    val liveEventUnderTest = viewModel.onShoppingListAddedSuccessfully.testObserver()
+
+    every { repository.saveShoppingList(givenShoppingList) } returns Completable.complete()
+    viewModel.saveShoppingList(givenName, givenDate)
+
+    // then
+    assertTrue(liveEventUnderTest.observedValues.isNotEmpty() && liveEventUnderTest.observedValues.first() is Event)
+  }
 }

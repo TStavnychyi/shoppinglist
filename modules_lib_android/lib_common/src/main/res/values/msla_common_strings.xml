@@ -8,7 +8,6 @@
 
     <string name="msla_common_shopping_list_adapter_item_tools_title">Picnic</string>
     <string name="msla_common_shopping_list_adapter_item_tools_created_date">25.06.2020</string>
-    <string name="msla_common_shopping_list_adapter_item_tools_checked_items_count">2/5</string>
     <string name="msla_common_shopping_list_adapter_item_options_icon_content_description">Shopping lists item options</string>
     <string name="msla_common_shopping_list_adapter_item_options_remove">Remove</string>
 </resources>

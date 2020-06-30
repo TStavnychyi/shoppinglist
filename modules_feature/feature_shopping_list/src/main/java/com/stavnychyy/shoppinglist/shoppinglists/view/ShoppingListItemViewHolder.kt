@@ -14,7 +14,7 @@ class ShoppingListItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     with(viewEntity) {
       itemView.view_title.text = title
       itemView.view_created_date.text = createdDate
-      itemView.view_checked_items_count.text = shoppingList.getCheckedItemsCount()
+      itemView.view_completed_shopping_tasks.applyViewEntity(shoppingList.createShoppingListCompletedTasks())
       itemView.view_options.setOnClickListener {
         openPopupMenu(
           viewEntity.shoppingList,
