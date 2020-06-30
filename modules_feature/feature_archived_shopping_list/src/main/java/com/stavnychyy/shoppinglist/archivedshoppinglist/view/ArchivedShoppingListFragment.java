@@ -77,6 +77,7 @@ public class ArchivedShoppingListFragment extends Fragment implements ArchivedSh
   private void initRecyclerView() {
     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
     archivedShoppingList.setLayoutManager(layoutManager);
+    archivedShoppingList.setItemAnimator(null);
     archivedShoppingList.setAdapter(adapter);
   }
 

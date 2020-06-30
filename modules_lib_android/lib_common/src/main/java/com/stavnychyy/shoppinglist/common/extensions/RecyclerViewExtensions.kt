@@ -7,3 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 fun RecyclerView.linearVertical() {
     layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 }
+
+fun RecyclerView.disableItemAnimations() {
+    itemAnimator = null
+}

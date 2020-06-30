@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.stavnychyy.shoppinglist.shoppinglists.di.ShoppingListComponentProvider
 import com.stavnychyy.shoppinglist.common.extensions.changeToolbarTitle
+import com.stavnychyy.shoppinglist.common.extensions.disableItemAnimations
 import com.stavnychyy.shoppinglist.common.extensions.linearVertical
 import com.stavnychyy.shoppinglist.common.extensions.visibleOrGone
 import com.stavnychyy.shoppinglist.common.navigation.AppNavigator
@@ -69,6 +71,7 @@ class ShoppingListFragment : Fragment() {
 
   private fun initShoppingList() {
     view_shopping_list.apply {
+      disableItemAnimations()
       linearVertical()
       adapter = shoppingListAdapter
     }

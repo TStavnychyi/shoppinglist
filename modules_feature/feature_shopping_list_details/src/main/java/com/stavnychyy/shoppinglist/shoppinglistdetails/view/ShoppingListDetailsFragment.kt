@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.stavnychyy.shoppinglist.common.extensions.changeToolbarTitle
+import com.stavnychyy.shoppinglist.common.extensions.disableItemAnimations
 import com.stavnychyy.shoppinglist.common.extensions.linearVertical
 import com.stavnychyy.shoppinglist.common.extensions.visibleOrGone
 import com.stavnychyy.shoppinglist.domain.ShoppingListId
@@ -87,8 +88,7 @@ class ShoppingListDetailsFragment : Fragment() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     viewModel.loadShoppingList(shoppingListId)
-    shoppingListItemsAdapter = ShoppingListItemsAdapter(
-      isInReadMode)
+    shoppingListItemsAdapter = ShoppingListItemsAdapter(isInReadMode)
   }
 
   override fun onCreateView(
@@ -118,15 +118,6 @@ class ShoppingListDetailsFragment : Fragment() {
       })
 
       handleShoppingListItemBottomSheetResult()
-
-//      findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<AddingShoppingListItemResult>(
-//        SHOPPING_LIST_ITEM
-//      )?.observe(viewLifecycleOwner, Observer {
-//        addShoppingListItem(it.shoppingListItemId, it.title, it.subtitle)
-//        findNavController().currentBackStackEntry?.savedStateHandle?.remove<AddingShoppingListItemResult>(
-//          SHOPPING_LIST_ITEM
-//        )
-//      })
     }
   }
 
@@ -137,6 +128,7 @@ class ShoppingListDetailsFragment : Fragment() {
 
   private fun initAdapter() {
     view_list_items.apply {
+      disableItemAnimations()
       linearVertical()
       adapter = shoppingListItemsAdapter
     }
