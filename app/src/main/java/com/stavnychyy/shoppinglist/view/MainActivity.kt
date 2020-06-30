@@ -13,7 +13,7 @@ import com.stavnychyy.shoppinglist.archivedshoppinglist.di.ArchivedShoppingListC
 import com.stavnychyy.shoppinglist.common.extensions.visibleOrGone
 import com.stavnychyy.shoppinglist.shoppinglists.di.ShoppingListComponent
 import com.stavnychyy.shoppinglist.shoppinglists.di.ShoppingListComponentProvider
-import com.stavnychyy.shoppinglist.shoppinglists.di.activity.ActivityComponent
+import com.stavnychyy.shoppinglist.di.activity.ActivityComponent
 import kotlinx.android.synthetic.main.msla_activity_main.*
 import javax.inject.Inject
 

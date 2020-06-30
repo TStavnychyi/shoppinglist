@@ -1,4 +1,4 @@
-package com.stavnychyy.shoppinglist.shoppinglists.di.activity
+package com.stavnychyy.shoppinglist.di.activity
 
 import androidx.navigation.NavController
 import androidx.navigation.findNavController

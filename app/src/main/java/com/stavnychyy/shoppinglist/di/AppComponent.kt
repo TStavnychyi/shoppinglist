@@ -3,7 +3,7 @@ package com.stavnychyy.shoppinglist.shoppinglists.di
 import android.content.Context
 import com.stavnychyy.shoppinglist.addshoppinglist.di.AddShoppingListComponent
 import com.stavnychyy.shoppinglist.shoppinglistdetails.di.ShoppingListDetailsComponent
-import com.stavnychyy.shoppinglist.shoppinglists.di.activity.ActivityComponent
+import com.stavnychyy.shoppinglist.di.activity.ActivityComponent
 import com.stavnychyy.shoppinglist.common.viewmodel.ViewModelBuilderModule
 import com.stavnychyy.shoppinglist.storage.di.DatabaseModule
 import dagger.BindsInstance

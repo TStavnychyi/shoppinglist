@@ -1,4 +1,4 @@
-package com.stavnychyy.shoppinglist.shoppinglists.di.activity
+package com.stavnychyy.shoppinglist.di.activity
 
 import com.stavnychyy.shoppinglist.archivedshoppinglist.di.ArchivedShoppingListComponent
 import com.stavnychyy.shoppinglist.shoppinglists.di.ShoppingListComponent

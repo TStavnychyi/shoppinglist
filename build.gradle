@@ -10,7 +10,6 @@ buildscript {
     dependencies {
         classpath plgns.android_gradle_plugin
         classpath plgns.kotlin_gradle_plugin
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath plgns.navigation_safe_args_plugin
     }
 }
