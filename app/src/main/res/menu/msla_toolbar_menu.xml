@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item
+      android:id="@+id/shopping_list_fragment"
+      android:icon="@drawable/msla_shopping_list_bottom_nav_icon"
+      android:title="@string/msla_shopping_list_bottom_nav_bar_item_title" />
+
   <item
       android:id="@+id/archived_shopping_list_fragment"
       android:icon="@drawable/msla_archived_shopping_list_toolbar_icon"
-      android:title="@string/msla_archived_shopping_list_bottom_nav_bar_item_title"
-      app:showAsAction="ifRoom" />
+      android:title="@string/msla_archived_shopping_list_bottom_nav_bar_item_title" />
 </menu>

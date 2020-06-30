@@ -2,11 +2,15 @@ package com.stavnychyy.shoppinglist
 
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.stavnychyy.shoppinglist.di.*
+import com.stavnychyy.shoppinglist.addshoppinglist.di.AddShoppingComponentProvider
+import com.stavnychyy.shoppinglist.addshoppinglist.di.AddShoppingListComponent
+import com.stavnychyy.shoppinglist.shoppinglistdetails.di.ShoppingListDetailsComponent
+import com.stavnychyy.shoppinglist.shoppinglistdetails.di.ShoppingListDetailsComponentFactoryProvider
+import com.stavnychyy.shoppinglist.shoppinglists.di.*
 
 
 class ShoppingListApplication : Application(), AddShoppingComponentProvider,
-    EditShoppingListComponentFactoryProvider {
+  ShoppingListDetailsComponentFactoryProvider {
 
     val appComponent: AppComponent by lazy { initializeComponent() }
 
@@ -14,7 +18,7 @@ class ShoppingListApplication : Application(), AddShoppingComponentProvider,
         return appComponent.addShoppingComponentFactory().create()
     }
 
-    override fun provideEditShoppingListComponentFactory(): EditShoppingListComponent.Factory {
+    override fun provideEditShoppingListComponentFactory(): ShoppingListDetailsComponent.Factory {
         return appComponent.editShoppingListComponentFactory()
     }
 

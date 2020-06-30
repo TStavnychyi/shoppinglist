@@ -6,7 +6,7 @@
       android:name=".ShoppingListApplication"
       android:allowBackup="true"
       android:fullBackupContent="@xml/msla_backup_rules">
-    <activity android:name=".view.MainActivity">
+    <activity android:name="com.stavnychyy.shoppinglist.view.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

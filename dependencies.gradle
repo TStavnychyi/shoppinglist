@@ -19,7 +19,6 @@ versions.dagger2 = "2.28.1"
 versions.rxjava = "2.2.19"
 versions.rxkotlin = "2.4.0"
 versions.rxandroid = "2.1.1"
-versions.google_material = "1.3.0-alpha01"
 versions.threetenabp = "1.2.4"
 
 //Testing libs
@@ -51,7 +50,6 @@ deps.dagger2_android_processor = "com.google.dagger:dagger-android-processor:$ve
 deps.rxjava = "io.reactivex.rxjava2:rxjava:$versions.rxjava"
 deps.rxkotlin = "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin"
 deps.rxjava_android = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
-deps.google_material = "com.google.android.material:material:$versions.google_material"
 deps.threetenbp = "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
 
 //============= TEST DEPENDENCIES =================

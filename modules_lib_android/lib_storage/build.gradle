@@ -3,15 +3,15 @@ apply from: "$rootDir/android_shared.gradle"
 
 dependencies {
 
+    implementation project(':lib_domain')
+
     implementation deps.threetenbp
+    implementation deps.dagger2
     implementation deps.androidx.room
     implementation deps.androidx.room_rxjava
-    kapt deps.androidx.room_compiler
-
-    implementation deps.dagger2
     implementation deps.androidx.paging
     implementation deps.androidx.paging_rxjava_ktx
-    kapt deps.dagger2_processor
 
-    implementation project(':lib_domain')
+    kapt deps.dagger2_processor
+    kapt deps.androidx.room_compiler
 }

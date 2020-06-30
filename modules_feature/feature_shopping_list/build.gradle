@@ -10,12 +10,5 @@ dependencies {
     implementation deps.androidx.paging
     implementation deps.androidx.paging_rxjava_ktx
 
-    implementation deps.androidx.lifecycle_viewmodel
-    implementation deps.androidx.lifecycle_livedata
-
-    implementation deps.rxjava
-    implementation deps.rxkotlin
-    implementation deps.rxjava_android
-
     kapt deps.androidx.lifecycle_compiler
 }

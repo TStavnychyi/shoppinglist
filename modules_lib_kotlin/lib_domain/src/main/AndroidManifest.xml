@@ -1,5 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.stavnychyy.shoppinglist">
-
-    /
-</manifest>
+<manifest package="com.stavnychyy.shoppinglist.domain" />

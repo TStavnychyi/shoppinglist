@@ -6,22 +6,16 @@
 
     <fragment
         android:id="@+id/shopping_list_fragment"
-        android:name="com.stavnychyy.shoppinglist.view.ShoppingListFragment">
+        android:name="com.stavnychyy.shoppinglist.shoppinglists.view.ShoppingListFragment">
         <action
-            android:id="@+id/open_add_shopping_list_screen"
-            app:destination="@id/add_shopping_list_fragment" />
-        <action
-            android:id="@+id/action_shopping_list_fragment_to_edit_shopping_list"
+            android:id="@+id/action_shopping_list_fragment_to_shopping_list_details"
             app:destination="@id/msla_shopping_list_details_navigation" />
-        <action
-            android:id="@+id/action_shopping_list_fragment_to_archived_shopping_list_fragment"
-            app:destination="@id/archived_shopping_list_fragment" />
     </fragment>
     <fragment
         android:id="@+id/archived_shopping_list_fragment"
-        android:name="com.stavnychyy.shoppinglist.view.ArchivedShoppingListFragment" />
+        android:name="com.stavnychyy.shoppinglist.archivedshoppinglist.view.ArchivedShoppingListFragment" />
     <dialog
         android:id="@+id/add_shopping_list_fragment"
-        android:name="com.stavnychyy.shoppinglist.view.AddShoppingListFragment" />
+        android:name="com.stavnychyy.shoppinglist.addshoppinglist.view.AddShoppingListFragment" />
     <include app:graph="@navigation/msla_shopping_list_details_navigation" />
 </navigation>

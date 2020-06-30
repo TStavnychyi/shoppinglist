@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msla_shopping_list_details_add_item_button_title">Add Item</string>
+    <string name="msla_shopping_list_details_item_name_hint">Add Item</string>
+    <string name="msla_shopping_list_details_save_item_button_title">Add</string>
+    <string name="msla_shopping_list_details_item_additional_info_hint">Kind, Amount, Note</string>
+    <string name="msla_shopping_list_details_delete_icon_content_description">Icon delete item</string>
+    <string name="msla_shopping_list_details_empty_screen_title">Create you first shopping list item</string>
+</resources>

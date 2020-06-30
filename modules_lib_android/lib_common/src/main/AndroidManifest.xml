@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.stavnychyy.shoppinglist">
+    package="com.stavnychyy.shoppinglist.common">
 
   <application
       android:icon="@mipmap/msla_common_launcher_icon"

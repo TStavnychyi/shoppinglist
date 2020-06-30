@@ -9,7 +9,4 @@ dependencies {
 
     implementation deps.androidx.paging_java
     implementation deps.androidx.paging_rxjava
-    implementation deps.rxjava
-    implementation deps.rxjava_android
-
 }
